@@ -5,5 +5,11 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = 'asc') {
+  let sortedArr = arr.slice();
 
+  if(param == 'desc') {
+    return sortedArr.sort(new Intl.Collator('ru', { caseFirst: 'upper' } ).compare).reverse();
+  }
+
+  return sortedArr.sort(new Intl.Collator('ru', { caseFirst: 'upper' } ).compare);
 }
