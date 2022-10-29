@@ -5,11 +5,13 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = 'asc') {
-  let sortedArr = arr.slice();
+  let sortedArr = [...arr];   // лучший вариант скопировать массив
+
+  sortedArr.sort(new Intl.Collator('ru', { caseFirst: 'upper' } ).compare)
 
   if(param == 'desc') {
-    return sortedArr.sort(new Intl.Collator('ru', { caseFirst: 'upper' } ).compare).reverse();
+    return sortedArr.reverse();
   }
 
-  return sortedArr.sort(new Intl.Collator('ru', { caseFirst: 'upper' } ).compare);
+  return sortedArr;
 }

@@ -7,7 +7,7 @@
 export const omit = (obj, ...fields) => {
   let newObjectToReturn = {};
 
-  for(let key in obj) {
+  for(const key in obj) {
     if(!fields.includes(key)) {
       newObjectToReturn[key] = obj[key];
     }
