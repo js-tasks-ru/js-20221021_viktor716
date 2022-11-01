@@ -7,14 +7,8 @@
  export function sortStrings(arr, param = 'asc') {
   // const sortedArr = arr.slice();
   const sortedArr = [...arr];   // лучший вариант скопировать массив
-
   const sortCollator = new Intl.Collator('ru', { caseFirst: 'upper' } );
-
-  sortedArr.sort( (a, b) => 
-                  (param === 'asc') ? sortCollator.compare(a, b) :
-                  (param === 'desc') ? sortCollator.compare(b, a) :
-                  null
-                );
-
-  return sortedArr;
+  const sortDirection = (param === 'asc') ? 1 : (param === 'desc') ? -1 : null;
+  
+  return sortedArr.sort( (a, b) => sortCollator.compare(a, b)*sortDirection);
 }
