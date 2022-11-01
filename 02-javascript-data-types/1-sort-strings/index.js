@@ -4,14 +4,17 @@
  * @param {string} [param="asc"] param - the sorting type "asc" or "desc"
  * @returns {string[]}
  */
-export function sortStrings(arr, param = 'asc') {
-  let sortedArr = [...arr];   // лучший вариант скопировать массив
+ export function sortStrings(arr, param = 'asc') {
+  // const sortedArr = arr.slice();
+  const sortedArr = [...arr];   // лучший вариант скопировать массив
 
-  sortedArr.sort(new Intl.Collator('ru', { caseFirst: 'upper' } ).compare)
+  const sortCollator = new Intl.Collator('ru', { caseFirst: 'upper' } );
 
-  if(param == 'desc') {
-    return sortedArr.reverse();
-  }
+  sortedArr.sort( (a, b) => 
+                  (param === 'asc') ? sortCollator.compare(a, b) :
+                  (param === 'desc') ? sortCollator.compare(b, a) :
+                  null
+                );
 
   return sortedArr;
 }
