@@ -7,8 +7,15 @@
 export const pick = (obj, ...fields) => {
   const newObjectToReturn = {};
   
+  // вариант решения с занятия
+  /*for (const [key, value] of Object.entries(obj)) {
+    if (fields.includes(key)) {
+      newObjectToReturn[key] = value;
+    }
+  }*/
+
   for (const key of fields) {
-    if(key in obj) {
+    if (obj.hasOwnProperty(key)) {
       newObjectToReturn[key] = obj[key];
     }
   }
