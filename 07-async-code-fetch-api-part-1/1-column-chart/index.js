@@ -92,12 +92,7 @@ export default class ColumnChart {
   }
   
   refreshData(newData) {
-    let dateArray = [];
-    for(const key in newData) {
-      dateArray.push({date: key, value: newData[key]})
-    }
-
-    this.data = dateArray;
+    this.data = Object.entries(newData).map(([key, value]) => ( {key, value} ));
 
     if (this.data.length) {
       this.element.classList.remove("column-chart_loading");
