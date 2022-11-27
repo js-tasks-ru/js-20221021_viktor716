@@ -50,13 +50,11 @@ export default class SortableTable {
   }
 
   getSortArrow(id) {
-    if (this.sorted.id === id) {
-      return `<span data-element="arrow" class="sortable-table__sort-arrow">
-                <span class="sort-arrow"></span>
-              </span>`;
-    } else {
-      return '';
-    }    
+    return (this.sorted.id === id) ? 
+                `<span data-element="arrow" class="sortable-table__sort-arrow">
+                  <span class="sort-arrow"></span>
+                </span>`
+                : '';
   }
 
   getBody(data) {
@@ -86,11 +84,7 @@ export default class SortableTable {
     });
 
     return cells.map(({id, template}) => {
-      if (template) {
-        return template(item[id]);
-      } else {
-        return `<div class="sortable-table__cell">${item[id]}</div>`;
-      }
+      return template ? template(item[id]) : `<div class="sortable-table__cell">${item[id]}</div>`;
     }).join('');
   }
 
